@@ -1,0 +1,48 @@
+1. Given the following statement:
+
+CREATE TABLE `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+- What does the AUTO_INCREMENT flag do?
+  
+  This will increase the id count by 1 after a user is created
+
+- What does int(11) mean?
+
+  This means that the is is an integer of no more than 11 characters
+
+- What is users in this statement?
+
+  users is the title of the table which stores the information listed in its parameters
+
+2. Explain the concept of a primary key.
+
+  A primary key is the id used to be able to distinguish each variable in the database, in this case each user would have a primary key (id) 
+
+3. Explain the concept of a foreign key.
+
+  A foreign key is the id of an item from another table that is in association with the current table. As an example a products table would have a users foreign key, because no product could be created without a user, creating that association.
+
+4. Get a list of all the emails from the users table.
+
+  SELECT email FROM users;
+
+5. Get the name of all users who have placed orders on an Iphone.
+
+  SELECT email FROM users; 
+  INNER JOIN orders ON users.id=orders.user_id;
+
+  INNER JOIN orders_products ON orders.id=orders_products.order_id;
+
+  INNER JOIN products ON orders_products.products_id=products.id WHERE products.name="iPhone";
+
+6. Get a list of all the users ( id's are fine ) who have placed orders over 300$ N.B. The cost in the products table is in cents, not dollars.
+
+  SELECT users.email FROM users INNER JOIN orders ON users.id = orders.user_id; 
+  INNER JOIN orders_products ON oders.id = orders_products.order_id;
+  INNER JOIN products 
+  ON orders_products.products_id = products.id HAVING sum(products.cost) > 30000; 
